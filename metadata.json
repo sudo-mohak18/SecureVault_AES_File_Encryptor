@@ -1,0 +1,6 @@
+{
+  "name": "SecureVault - AES File Encryptor",
+  "description": "Enterprise-grade AES-256-GCM file encryption & decryption suite with 600,000 PBKDF2 iterations, drag & drop, and full Python CustomTkinter desktop source.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
