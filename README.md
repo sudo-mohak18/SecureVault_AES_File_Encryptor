@@ -50,3 +50,48 @@ SecureVault/
 │   └── utils.py            # Password strength, random generator, formatters
 ├── requirements.txt        # Python package dependencies
 └── README.md               # Documentation & setup guide
+```
+## 🚀 Installation & Setup
+1. Prerequisites
+Python 3.10 or higher installed on your system.
+Standard pip package manager.
+
+2. Clone or Extract the Project
+```
+git clone https://github.com/your-username/SecureVault.git
+cd SecureVault
+```
+3. Create a Virtual Environment (Recommended)
+On macOS / Linux:
+
+```
+python3 -m venv venv
+source venv/bin/activate
+
+```
+On Windows (Command Prompt / PowerShell):
+```
+python -m venv venv
+.\venv\Scripts\activate
+```
+4. Install Dependencies
+   ```
+   pip install -r requirements.txt
+   ````
+   (Note for Linux users: If tkinter is not bundled with your Python distribution, install it via sudo apt-get install python3-tk)
+💻 How to Run
+Launch the desktop application with:
+```
+python main.py
+```
+Or on macOS/Linux:
+```
+python3 main.py
+````
+## 🔒 Security Best Practices
+Keep Your Password Safe: AES-256-GCM authenticated encryption cannot be brute-forced without the password. If you lose your password, data recovery is mathematically impossible.
+Tamper Proof: If anyone modifies even a single bit of an .enc file or inputs an incorrect password, GCM tag verification fails and aborts decryption immediately.
+Memory Safety: Sensitive derived keys are discarded from memory as soon as processing completes.
+
+## 📄 License
+Apache License 2.0. Free for personal, educational, and commercial security usage.
