@@ -160,7 +160,7 @@ def attack(pool, log=print, state_file='state.json', block=8192):
             s_new = None
             spent = 0
             while s_new is None:
-                if spent > 150000:
+                if spent > 250000:
                     log('  step2b stalled (%d queries), falling back to consecutive search' % spent)
                     cand = s + 1
                     while s_new is None:
@@ -169,18 +169,17 @@ def attack(pool, log=print, state_file='state.json', block=8192):
                             cand += block
                             log('  fallback ... s=%d q=%d' % (cand, pool.count))
                     break
-                for blk in (4, 16, 64, 256, 1024, 4096):
+                for blk in (8, 32, 128, 512, 2048, 8192):
                     cands = []
                     seen = set()
                     rr = r
                     while len(cands) < blk:
-                        sv = ceil_div(2 * B + rr * n, b)
-                        if sv <= s:
-                            sv = s + 1
-                        if sv not in seen:
-                            seen.add(sv)
-                            cands.append(sv)
+                        for sv in (ceil_div(2 * B + rr * n, b), (3 * B - 1 + rr * n) // a):
+                            if sv > s and sv not in seen:
+                                seen.add(sv)
+                                cands.append(sv)
                         rr += 1
+                    cands.sort()
                     s_new = pool.first_valid_list(cands)
                     spent += len(cands)
                     r = rr
